@@ -1,0 +1,37 @@
+{
+  "name": "int-to-roman",
+  "version": "0.0.0",
+  "description": "A simple number to roman number converter",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "dev": "bundlib -dw",
+    "build": "bundlib -d",
+    "test": "jest --color -w 3",
+    "test:watch": "npm test -- --watch-all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manferlo81/int-to-roman.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manferlo81/int-to-roman/issues"
+  },
+  "homepage": "https://github.com/manferlo81/int-to-roman#readme",
+  "devDependencies": {
+    "@types/jest": "^24.9.0",
+    "@types/node": "^13.1.8",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "bundlib": "^0.14.1",
+    "chokidar": "^3.3.1",
+    "eslint": "^6.8.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.5"
+  }
+}
