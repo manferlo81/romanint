@@ -45,7 +45,9 @@ test('should convert to roman number', () => {
     cents.forEach((centSym, cent) => {
       decs.forEach((decSym, dec) => {
         unities.forEach((unitySym, unity) => {
-          expect(convert(mil * 1000 + cent * 100 + dec * 10 + unity)).toBe(milSym + centSym + decSym + unitySym)
+          const num = mil * 1000 + cent * 100 + dec * 10 + unity
+          const expected = milSym + centSym + decSym + unitySym
+          expect(convert(num)).toBe(expected)
         })
       })
     })
