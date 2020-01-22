@@ -8,7 +8,8 @@
   "types": "types/index.d.ts",
   "bundlib": {
     "min": "browser",
-    "equals": true
+    "equals": true,
+    "name": "toRoman"
   },
   "scripts": {
     "dev": "bundlib -dw",
