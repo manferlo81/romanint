@@ -29,9 +29,12 @@ function f1(num: number, i: number): string {
   return nnn > 0 ? f1(nnn, i + 2) + r : r
 }
 
-function convert(num: number) {
-  num = Math.round(num)
-  return f1(num, 0)
+function convert(num: number): string {
+  const n = Math.floor(+num)
+  if (n < 0) {
+    throw new TypeError('number can\'t be less than zero.')
+  }
+  return f1(n, 0)
 }
 
 export default convert
