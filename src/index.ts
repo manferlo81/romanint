@@ -1,4 +1,4 @@
-function repeat(s: string, count: number) {
+function repeat(s: string, count: number): string {
   let r = ''
   while (r.length < count) {
     r += s

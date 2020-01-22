@@ -4,7 +4,6 @@ test('should throw on negative number', () => {
   expect(() => convert(-1)).toThrow()
 })
 
-
 test('should convert to roman number', () => {
   const unities = [
     '',

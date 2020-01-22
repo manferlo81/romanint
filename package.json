@@ -11,6 +11,7 @@
     "test": "jest --color -w 3",
     "test:watch": "npm test -- --watch-all",
     "clean": "rimraf dist coverage types node_modules/.cache/jest node_modules/.cache/bundlib",
+    "lint": "eslint src/** __test__/**",
     "prerelease": "npm run clean && npm test && npm run build"
   },
   "repository": {
