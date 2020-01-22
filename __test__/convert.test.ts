@@ -4,6 +4,10 @@ test('should throw on negative number', () => {
   expect(() => convert(-1)).toThrow()
 })
 
+test('should throw on out of bound number', () => {
+  expect(() => convert(4000)).toThrow()
+})
+
 test('should convert to roman number', () => {
   const unities = [
     '',

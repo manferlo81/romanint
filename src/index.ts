@@ -34,6 +34,9 @@ function convert(num: number): string {
   if (n < 0) {
     throw new TypeError('number can\'t be less than zero.')
   }
+  if (n >= 4000) {
+    throw new RangeError('number can\' be greater than 3999.')
+  }
   return f1(n, 0)
 }
 
