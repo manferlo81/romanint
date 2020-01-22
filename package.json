@@ -4,7 +4,11 @@
   "description": "A simple number to roman number converter",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "browser": "dist/index.umd.js",
   "types": "types/index.d.ts",
+  "bundlib": {
+    "min": "browser"
+  },
   "scripts": {
     "dev": "bundlib -dw",
     "build": "bundlib -d",
