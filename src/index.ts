@@ -26,7 +26,7 @@ function f1(num: number, i: number): string {
   ]
   const r = db[num % 10]
   const nnn = Math.floor(num / 10)
-  return nnn > 0 ? f1(nnn, i + 2) + r : r
+  return nnn > 0 ? `${f1(nnn, i + 2)}${r}` : r
 }
 
 function convert(num: number): string {

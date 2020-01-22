@@ -39,6 +39,12 @@
     "semi": [
       "error",
       "never"
-    ]
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "object-shorthand": "error",
+    "no-useless-rename": "error"
   }
 }

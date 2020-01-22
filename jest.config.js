@@ -12,7 +12,7 @@ module.exports = {
   coverageReporters: [
     'json',
     'lcov',
-    'text'
+    'text',
   ],
 
   verbose: true,
