@@ -3,18 +3,28 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 
+executors:
+  node_10:
+    docker:
+      - image: circleci/node:10
+    working_directory: &working_directory ~/int-to-roman
+
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  test-and-build:
+    executor: node_10
     steps:
       - checkout
       - node/with-cache:
           steps:
             - run: npm install
-            - run: npm test
+      - run: npm test
+      - run: npm run build
+      - persist_to_workspace:
+          root: *working_directory
+            paths:
+              - .
 
 workflows:
-  build-and-test:
+  workflow:
     jobs:
-      - build-and-test
+      - test-and-build
