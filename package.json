@@ -2,6 +2,7 @@
   "name": "int-to-roman",
   "version": "0.0.0",
   "description": "A simple number to roman number converter",
+  "keywords": [],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "browser": "dist/index.umd.js",
@@ -18,19 +19,9 @@
     "test:watch": "npm test -- --watch-all",
     "clean": "rimraf dist coverage types node_modules/.cache/jest node_modules/.cache/bundlib",
     "lint": "eslint src/** __test__/**",
-    "prerelease": "npm run clean && npm test && npm run build"
+    "prerelease": "npm run clean && npm test && npm run build",
+    "release": "standard-version"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/manferlo81/int-to-roman.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/manferlo81/int-to-roman/issues"
-  },
-  "homepage": "https://github.com/manferlo81/int-to-roman#readme",
   "devDependencies": {
     "@types/jest": "^24.9.1",
     "@types/node": "^13.7.4",
@@ -42,7 +33,21 @@
     "husky": "^4.2.3",
     "jest": "^24.9.0",
     "rimraf": "^3.0.2",
+    "standard-version": "^7.1.0",
     "ts-jest": "^24.3.0",
     "typescript": "^3.7.5"
-  }
+  },
+  "author": {
+    "name": "Manuel Fernandez",
+    "email": "manferlo81@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manferlo81/int-to-roman.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manferlo81/int-to-roman/issues"
+  },
+  "homepage": "https://github.com/manferlo81/int-to-roman#readme",
+  "license": "MIT"
 }
