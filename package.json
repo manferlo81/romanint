@@ -8,9 +8,8 @@
   "browser": "dist/to-roman.umd.js",
   "types": "types/index.d.ts",
   "bundlib": {
-    "min": "browser",
-    "equals": true,
-    "name": "toRoman"
+    "name": "toRoman",
+    "min": "browser"
   },
   "scripts": {
     "dev": "bundlib -dw",
