@@ -19,7 +19,7 @@
     "test:watch": "npm test -- --watch-all",
     "clean": "rimraf dist coverage types node_modules/.cache/jest node_modules/.cache/bundlib",
     "lint": "eslint src/** __test__/**",
-    "prerelease": "npm run clean && npm test && npm run build",
+    "prerelease": "npm run clean && npm run lint && npm test && npm run build",
     "release": "standard-version"
   },
   "devDependencies": {
