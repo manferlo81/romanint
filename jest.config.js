@@ -10,9 +10,9 @@ module.exports = {
   collectCoverageFrom: ['src/**'],
   coverageDirectory: 'coverage',
   coverageReporters: [
-    'json',
-    'lcov',
+    process.env.CI ? 'json' : 'lcov',
     'text',
+    'text-summary',
   ],
 
   verbose: true,
