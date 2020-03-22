@@ -1,9 +1,9 @@
-function f1(num: number, i: number, symbols: string[]): string {
+function fmt(num: number, i: number, symbols: string[]): string {
   const unity = symbols[i]
   const unity2 = unity + unity
   const unity3 = unity2 + unity
   const five = symbols[i + 1]
-  const db = [
+  const result = [
     '',
     unity,
     unity2,
@@ -14,10 +14,9 @@ function f1(num: number, i: number, symbols: string[]): string {
     five + unity2,
     five + unity3,
     unity + symbols[i + 2],
-  ]
-  const result = db[num % 10]
+  ][num % 10]
   const next = Math.floor(num / 10)
-  return next > 0 ? (f1(next, i + 2, symbols) + result) : result
+  return next ? fmt(next, i + 2, symbols) + result : result
 }
 
 function toRoman(num: number): string {
@@ -28,7 +27,7 @@ function toRoman(num: number): string {
   if (n >= 4000) {
     throw new RangeError('number can\'t be greater than 3999.')
   }
-  return f1(n, 0, 'IVXLCDM'.split(''))
+  return fmt(n, 0, 'IVXLCDM'.split(''))
 }
 
 export default toRoman
