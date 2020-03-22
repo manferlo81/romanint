@@ -48,6 +48,8 @@ test('should convert to roman number', () => {
   const mils = [
     '',
     'M',
+    'MM',
+    'MMM',
   ]
   mils.forEach((milSym, mil) => {
     cents.forEach((centSym, cent) => {
