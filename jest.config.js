@@ -1,13 +1,13 @@
 module.exports = {
 
   testEnvironment: 'node',
-  browser: false,
-
-  preset: 'ts-jest',
   cacheDirectory: 'node_modules/.cache/jest',
+  preset: 'ts-jest',
 
   collectCoverage: true,
-  collectCoverageFrom: ['src/**'],
+  collectCoverageFrom: [
+    'src/**',
+  ],
   coverageDirectory: 'coverage',
   coverageReporters: [
     process.env.CI ? 'json' : 'lcov',
