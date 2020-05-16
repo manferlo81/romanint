@@ -7,10 +7,6 @@
   "module": "dist/to-roman.mjs",
   "browser": "dist/to-roman.umd.js",
   "types": "types/index.d.ts",
-  "bundlib": {
-    "name": "toRoman",
-    "min": "browser"
-  },
   "scripts": {
     "dev": "bundlib -dw",
     "build": "bundlib -d",
