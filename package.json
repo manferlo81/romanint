@@ -2,7 +2,15 @@
   "name": "int-to-roman",
   "version": "0.0.0",
   "description": "A simple number to roman number converter",
-  "keywords": [],
+  "keywords": [
+    "convert",
+    "converter",
+    "int",
+    "integer",
+    "number",
+    "roman",
+    "roman-number"
+  ],
   "main": "dist/to-roman.js",
   "module": "dist/to-roman.mjs",
   "browser": "dist/to-roman.umd.js",
