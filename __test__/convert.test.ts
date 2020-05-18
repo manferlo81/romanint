@@ -1,12 +1,12 @@
-import convert from '../src/index'
+import convert from '../src/index';
 
 test('should throw on negative number', () => {
-  expect(() => convert(-1)).toThrow()
-})
+  expect(() => convert(-1)).toThrow();
+});
 
 test('should throw on out of bound number', () => {
-  expect(() => convert(4000)).toThrow()
-})
+  expect(() => convert(4000)).toThrow();
+});
 
 test('should convert to roman number', () => {
   const unities = [
@@ -20,7 +20,7 @@ test('should convert to roman number', () => {
     'VII',
     'VIII',
     'IX',
-  ]
+  ];
   const decs = [
     '',
     'X',
@@ -32,7 +32,7 @@ test('should convert to roman number', () => {
     'LXX',
     'LXXX',
     'XC',
-  ]
+  ];
   const cents = [
     '',
     'C',
@@ -44,22 +44,22 @@ test('should convert to roman number', () => {
     'DCC',
     'DCCC',
     'CM',
-  ]
+  ];
   const mils = [
     '',
     'M',
     'MM',
     'MMM',
-  ]
+  ];
   mils.forEach((milSym, mil) => {
     cents.forEach((centSym, cent) => {
       decs.forEach((decSym, dec) => {
         unities.forEach((unitySym, unity) => {
-          const num = mil * 1000 + cent * 100 + dec * 10 + unity
-          const expected = milSym + centSym + decSym + unitySym
-          expect(convert(num)).toBe(expected)
-        })
-      })
-    })
-  })
-})
+          const num = mil * 1000 + cent * 100 + dec * 10 + unity;
+          const expected = milSym + centSym + decSym + unitySym;
+          expect(convert(num)).toBe(expected);
+        });
+      });
+    });
+  });
+});
