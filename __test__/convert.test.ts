@@ -1,4 +1,5 @@
 import convert from '../src/index';
+import { each } from './tools/each';
 
 test('should throw on negative number', () => {
   expect(() => convert(-1)).toThrow();
@@ -8,58 +9,31 @@ test('should throw on out of bound number', () => {
   expect(() => convert(4000)).toThrow();
 });
 
-test('should convert to roman number', () => {
-  const unities = [
+test('should throw on invalid input', () => {
+
+  const invalids = [
     '',
-    'I',
-    'II',
-    'III',
-    'IV',
-    'V',
-    'VI',
-    'VII',
-    'VIII',
-    'IX',
+    NaN,
+    'string',
+    '-1',
+    '-0.99',
+    '4000',
   ];
-  const decs = [
-    '',
-    'X',
-    'XX',
-    'XXX',
-    'XL',
-    'L',
-    'LX',
-    'LXX',
-    'LXXX',
-    'XC',
-  ];
-  const cents = [
-    '',
-    'C',
-    'CC',
-    'CCC',
-    'CD',
-    'D',
-    'DC',
-    'DCC',
-    'DCCC',
-    'CM',
-  ];
-  const mils = [
-    '',
-    'M',
-    'MM',
-    'MMM',
-  ];
-  mils.forEach((milSym, mil) => {
-    cents.forEach((centSym, cent) => {
-      decs.forEach((decSym, dec) => {
-        unities.forEach((unitySym, unity) => {
-          const num = mil * 1000 + cent * 100 + dec * 10 + unity;
-          const expected = milSym + centSym + decSym + unitySym;
-          expect(convert(num)).toBe(expected);
-        });
-      });
-    });
+
+  invalids.forEach((invalid) => {
+    expect(() => convert(invalid as never)).toThrow();
+  });
+
+});
+
+test('should convert number to roman number', () => {
+  each((num, expected) => {
+    expect(convert(num)).toBe(expected);
+  });
+});
+
+test('should convert numeric string to roman number', () => {
+  each((num, expected) => {
+    expect(convert(`${num}` as never)).toBe(expected);
   });
 });
