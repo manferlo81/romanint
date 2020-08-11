@@ -1,2 +1,7 @@
 name: toRoman
 min: browser
+
+esModule: true
+interop: true
+
+equals: true
