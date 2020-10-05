@@ -30,3 +30,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: See Event name
+        run: echo ${{ github.event_name }}
