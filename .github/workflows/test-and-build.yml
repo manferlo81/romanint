@@ -54,4 +54,4 @@ jobs:
 
       - name: Publish
         run: echo publish command goes here, event = ${{ github.event }}
-        if: ${{ github.event == "release" }}
+        if: ${{ github.event == 'release' }}
