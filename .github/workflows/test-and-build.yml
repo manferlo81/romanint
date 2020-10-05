@@ -52,6 +52,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: See event
+        run: echo ${{ github.event }}
+
       - name: Publish
         run: echo publish command goes here, event = ${{ github.event }}
         if: ${{ github.event == 'release' }}
