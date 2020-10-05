@@ -9,34 +9,9 @@ on:
     types: [created]
 
 jobs:
-  run_test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [10.x, 12.x, 14.x]
-
-    name: Run tests
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
-
-  build_and_publish:
-    name: Build
+  build:
+    name: Test and Build
     runs-on: ubuntu-latest
-
-    needs: run_test
 
     steps:
       - uses: actions/checkout@v2
@@ -49,12 +24,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run tests
+        run: npm test
+
       - name: Build
         run: npm run build
 
-      - name: See event
-        run: echo ${{ github.event }}
-
-      - name: Publish
-        run: echo publish command goes here, event = ${{ github.event }}
-        if: ${{ github.event == 'release' }}
+      - name: See Event
+        run: echo ${{ toJson(github.event) }}
+      # - name: Publish
+      #   run: echo publish command goes here, event = ${{ github.event }}
+      #   if: ${{ github.event == 'release' }}
