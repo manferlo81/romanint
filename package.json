@@ -14,13 +14,13 @@
   "main": "dist/to-roman.js",
   "module": "dist/to-roman.mjs",
   "browser": "dist/to-roman.umd.js",
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "bundlib -dw",
     "build": "bundlib -d",
     "test": "jest --color -w 3",
     "test:watch": "npm test -- --watch-all",
-    "clean": "rimraf dist coverage types node_modules/.cache/jest node_modules/.cache/bundlib",
+    "clean": "rimraf dist coverage node_modules/.cache/jest node_modules/.cache/bundlib",
     "lint": "eslint src/**/*.ts __test__/**/*.ts",
     "prerelease": "npm run clean && npm run lint && npm test && npm run build",
     "release": "standard-version"
