@@ -11,10 +11,17 @@
     "roman",
     "roman-number"
   ],
-  "main": "dist/to-roman.js",
-  "module": "dist/to-roman.mjs",
-  "browser": "dist/to-roman.umd.js",
-  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "exports": {
+    "module": "./dist/to-roman.mjs",
+    "main": "./dist/to-roman.cjs"
+  },
+  "main": "./dist/to-roman.cjs",
+  "module": "./dist/to-roman.mjs",
+  "jsnext:main": "./dist/to-roman.mjs",
+  "browser": "./dist/to-roman.umd.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "dev": "bundlib -dw",
     "build": "bundlib -d",
