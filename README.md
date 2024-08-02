@@ -1,25 +1,39 @@
-# int-to-roman
+# romanint
 
-A simple number to roman number converter
+A simple integer to roman number converter
 
 ## Install
 
+### npn
+
 ```bash
-npm install int-to-roman
+npm install romanint
+```
+
+### yarn
+
+```bash
+yarn add romanint
+```
+
+### pnpn
+
+```bash
+pnpm add romanint
 ```
 
 ## Import
 
-### Using ES2015 import
+### Using import (ES Module)
 
 ```javascript
-import toRoman from 'int-to-roman'
+import toRoman from 'romanint';
 ```
 
 ### Using Node.js require
 
 ```javascript
-const toRoman = require('int-to-roman')
+const toRoman = require('romanint');
 ```
 
 ### In the browser
@@ -29,7 +43,7 @@ After including the `script` tag into your `html` file, `toRoman` method will be
 ## Usage
 
 ```javascript
-console.log(toRoman(123))
+console.log(toRoman(123));
 ```
 
 ```bash
@@ -38,4 +52,4 @@ console.log(toRoman(123))
 
 ## License
 
-[MIT](LICENSE) &copy; 2020 [Manuel Fernández](https://github.com/manferlo81)
+[MIT](LICENSE) &copy; 2020-2024 [Manuel Fernández](https://github.com/manferlo81) @manferlo81

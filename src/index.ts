@@ -25,7 +25,7 @@ function fmt(num: number, i: number, symbols: string[]): string {
 
 }
 
-function toRoman(num: number): string {
+function format(num: number): string {
 
   if (!num && num !== 0) {
     throw new TypeError(`"${num}" is not a valid numeric value.`);
@@ -53,4 +53,4 @@ function toRoman(num: number): string {
 
 }
 
-export default toRoman;
+export default format;

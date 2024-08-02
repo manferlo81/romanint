@@ -1,4 +1,3 @@
-
 export function each(callback: (num: number, expected: string) => void): void {
 
   const unities = [

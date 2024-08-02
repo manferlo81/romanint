@@ -2,11 +2,11 @@ name: Test and Build
 
 on:
   push:
-    branches: [master]
+    branches:
+      - main
   pull_request:
-    branches: [master]
-  release:
-    types: [created]
+    branches:
+      - main
 
 jobs:
   test_and_build:
