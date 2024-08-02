@@ -1,6 +1,7 @@
 # romanint
 
-[![codecov](https://codecov.io/gh/manferlo81/int-to-roman/graph/badge.svg?token=9XPXHS6ZWD)](https://codecov.io/gh/manferlo81/int-to-roman)
+[![CI](https://github.com/manferlo81/romanint/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/manferlo81/romanint/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/manferlo81/romanint/branch/main/graph/badge.svg?token=9XPXHS6ZWD)](https://codecov.io/gh/manferlo81/romanint)
 
 A simple integer to roman number converter
 
