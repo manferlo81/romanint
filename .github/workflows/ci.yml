@@ -47,6 +47,7 @@ jobs:
         node-version:
           - 18
           - 20
+          - 22
 
     steps:
       - name: Checkout Code
@@ -67,10 +68,6 @@ jobs:
 
       - name: Build
         run: npm run build
-
-      - name: Publish
-        run: echo publish command goes here
-        if: ${{ github.event_name == 'release' }}
 
   job_upload_coverage:
     name: Upload coverage to Codecov
