@@ -45,7 +45,6 @@ jobs:
           - windows-latest
           - macos-latest
         node-version:
-          - 16
           - 18
           - 20
 

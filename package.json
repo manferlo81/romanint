@@ -41,7 +41,7 @@
     "prepare": "husky"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
