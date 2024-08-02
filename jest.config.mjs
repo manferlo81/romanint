@@ -1,10 +1,10 @@
-module.exports = {
+export default {
 
   testEnvironment: 'node',
   cacheDirectory: 'node_modules/.cache/jest',
   preset: 'ts-jest',
 
-  collectCoverage: true,
+  collectCoverage: !process.env.NO_COVERAGE,
   collectCoverageFrom: [
     'src/**',
   ],

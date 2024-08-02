@@ -1,6 +1,6 @@
-import { BundlibConfig as Config } from 'bundlib';
+import { BundlibConfig } from 'bundlib';
 
-const config: Config = {
+const config: BundlibConfig = {
   interop: true,
   esModule: true,
   min: ['browser', 'module'],
