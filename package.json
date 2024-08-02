@@ -1,6 +1,6 @@
 {
   "name": "romanint",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple integer to roman number converter",
   "keywords": [
     "convert",
