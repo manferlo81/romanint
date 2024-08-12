@@ -48,7 +48,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
-    "@eslint/js": "^9.8.0",
+    "@eslint/js": "^9.9.0",
     "@stylistic/eslint-plugin": "^2.6.1",
     "@stylistic/eslint-plugin-migrate": "^2.6.1",
     "@types/eslint__js": "^8.42.3",
