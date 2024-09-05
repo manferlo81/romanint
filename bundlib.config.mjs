@@ -1,6 +1,6 @@
-import { BundlibConfig } from 'bundlib';
+import { config } from 'bundlib';
 
-const config: BundlibConfig = {
+export default config({
   interop: true,
   esModule: true,
   min: ['browser', 'module'],
@@ -9,6 +9,4 @@ const config: BundlibConfig = {
   equals: true,
 
   project: 'tsconfig-build.json',
-};
-
-export default config;
+});

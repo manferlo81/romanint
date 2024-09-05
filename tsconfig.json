@@ -17,10 +17,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "__test__/**/*.ts",
-    "eslint.config.mjs",
-    "jest.config.mjs",
-    "bundlib.config.ts"
+    "__test__/**/*.ts"
   ],
   "exclude": [
     "node_modules/**"
