@@ -18,7 +18,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: manferlo81/action-checkout-node-install@initial
+      - name: Checkout, Setup Node.js v20.x and Install dependencies
+        uses: manferlo81/action-checkout-node-install@initial
         with:
           node-version: 20.x
 
@@ -47,7 +48,8 @@ jobs:
     runs-on: ${{ matrix.os.machine }}
 
     steps:
-      - uses: manferlo81/action-checkout-node-install@initial
+      - name: Checkout, Setup Node.js v${{ matrix.node-version }} and Install dependencies
+        uses: manferlo81/action-checkout-node-install@initial
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -67,7 +69,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: manferlo81/action-checkout-node-install@initial
+      - name: Checkout, Setup Node.js v20.x and Install dependencies
+        uses: manferlo81/action-checkout-node-install@initial
         with:
           node-version: 20.x
 
@@ -93,7 +96,8 @@ jobs:
       contents: write
 
     steps:
-      - uses: manferlo81/action-checkout-node-install@initial
+      - name: Checkout, Setup Node.js v20.x and Install dependencies
+        uses: manferlo81/action-checkout-node-install@initial
         with:
           node-version: 20.x
 
@@ -117,7 +121,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: manferlo81/action-checkout-node-install@initial
+      - name: Checkout, Setup Node.js v20.x and Install dependencies
+        uses: manferlo81/action-checkout-node-install@initial
         with:
           node-version: 20.x
           registry-url: https://registry.npmjs.org/
@@ -141,7 +146,8 @@ jobs:
       packages: write
 
     steps:
-      - uses: manferlo81/action-checkout-node-install@initial
+      - name: Checkout, Setup Node.js v20.x and Install dependencies
+        uses: manferlo81/action-checkout-node-install@initial
         with:
           node-version: 20.x
           registry-url: https://npm.pkg.github.com/
