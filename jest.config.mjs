@@ -3,7 +3,7 @@ const config = {
   cacheDirectory: 'node_modules/.cache/jest',
   preset: 'ts-jest',
 
-  collectCoverage: !process.env.NO_COVERAGE,
+  collectCoverage: !process.env.SKIP_COVERAGE,
   collectCoverageFrom: [
     'src/**',
   ],

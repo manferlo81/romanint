@@ -13,61 +13,16 @@ on:
       - main
 
 jobs:
-  job_lint:
-    name: Lint
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout, Setup Node.js v20.x and Install dependencies
-        uses: manferlo81/action-checkout-node-install@v0
-        with:
-          node-version: 20.x
-
-      - name: Lint
-        run: npm run lint
-
-  job_test_and_build:
-    strategy:
-      matrix:
-        os:
-          - name: Ubuntu
-            machine: ubuntu-latest
-          - name: Windows
-            machine: windows-latest
-          - name: macOS
-            machine: macos-latest
-        node-version:
-          - 18.x
-          - 20.x
-          - 21.x
-          - 22.x
-
-    name: Test and Build ( ${{ matrix.os.name }}, Node.js v${{ matrix.node-version }} )
-
-    needs: job_lint
-    runs-on: ${{ matrix.os.machine }}
-
-    steps:
-      - name: Checkout, Setup Node.js v${{ matrix.node-version }} and Install dependencies
-        uses: manferlo81/action-checkout-node-install@v0
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Run Tests
-        run: npm test
-        env:
-          NO_COVERAGE: true
-
-      - name: Build
-        run: npm run build
+  job_lint_test_build:
+    name: Lint, Test and Build
+    uses: './.github/workflows/lint-test-build.yml'
 
   job_upload_coverage:
-    name: Upload coverage to Codecov
+    name: Upload Coverage to Codecov
 
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && github.ref_type == 'branch' }}
-    needs: job_test_and_build
+    needs: job_lint_test_build
 
     steps:
       - name: Checkout, Setup Node.js v${{ env.NODE_VERSION }} and Install dependencies
@@ -92,8 +47,8 @@ jobs:
     name: Create GitHub Release
 
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
-    needs: job_test_and_build
+    if: ${{ github.ref_type == 'tag' }}
+    needs: job_lint_test_build
 
     permissions:
       contents: write
@@ -118,11 +73,11 @@ jobs:
           files: romanint-*.tgz
 
   job_publish_to_npm:
-    name: Publish package to npm
+    name: Publish Package to npm
 
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
-    needs: job_test_and_build
+    if: ${{ github.ref_type == 'tag' }}
+    needs: job_lint_test_build
 
     steps:
       - name: Checkout, Setup Node.js v${{ env.NODE_VERSION }} and Install dependencies
