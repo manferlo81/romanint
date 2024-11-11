@@ -12,42 +12,43 @@ on:
     branches:
       - main
 
+env:
+  DEFAULT_NODE_VERSION: 20.x
+
 jobs:
   job_lint_test_build:
     name: Lint, Test and Build
     uses: './.github/workflows/lint-test-build.yml'
 
   job_upload_coverage:
-    name: Upload Coverage to Codecov
+    name: Upload Coverage Report to Codecov
 
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref_type == 'branch' }}
+    if: github.event_name == 'push' && github.ref_type == 'branch'
     needs: job_lint_test_build
 
     steps:
-      - name: Checkout, Setup Node.js v${{ env.NODE_VERSION }} and Install dependencies
+      - name: Checkout, Setup Node.js v${{ env.DEFAULT_NODE_VERSION }} and Install dependencies
         uses: manferlo81/action-checkout-node-install@v0
         with:
-          node-version: ${{ env.NODE_VERSION }}
-        env:
-          NODE_VERSION: 20.x
+          node-version: ${{ env.DEFAULT_NODE_VERSION }}
 
       - name: Run Tests
         run: npm test
         env:
           CI: true
 
-      - name: Upload coverage reports to Codecov
+      - name: Upload Coverage Report
         uses: codecov/codecov-action@v4.0.1
         with:
+          directory: coverage
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/coverage-final.json
 
   job_create_release:
     name: Create GitHub Release
 
     runs-on: ubuntu-latest
-    if: ${{ github.ref_type == 'tag' }}
+    if: github.ref_type == 'tag'
     needs: job_lint_test_build
 
     permissions:
@@ -67,31 +68,29 @@ jobs:
       - name: Create Tarball
         run: npm pack
 
-      - name:
+      - name: Create Release
         uses: manferlo81/action-auto-release@v0
         with:
           files: romanint-*.tgz
 
   job_publish_to_npm:
-    name: Publish Package to npm
+    name: Publish Package to npm Registry
 
     runs-on: ubuntu-latest
-    if: ${{ github.ref_type == 'tag' }}
+    if: github.ref_type == 'tag'
     needs: job_lint_test_build
 
     steps:
-      - name: Checkout, Setup Node.js v${{ env.NODE_VERSION }} and Install dependencies
+      - name: Checkout, Setup Node.js v${{ env.DEFAULT_NODE_VERSION }} and Install dependencies
         uses: manferlo81/action-checkout-node-install@v0
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://registry.npmjs.org/
-        env:
-          NODE_VERSION: 20.x
+          node-version: ${{ env.DEFAULT_NODE_VERSION }}
+          registry-url: https://registry.npmjs.org
 
       - name: Build
         run: npm run build
 
       - name: Publish package
-        run: npm publish
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
