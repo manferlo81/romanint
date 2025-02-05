@@ -1,54 +1,61 @@
-import js from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
+import pluginJavascript from '@eslint/js';
+import pluginStylistic from '@stylistic/eslint-plugin';
 import globals from 'globals';
 import { config, configs as typescriptConfigs } from 'typescript-eslint';
 
-const eslintRules = normalizeRules({
-  'no-useless-rename': 'error',
-  'object-shorthand': 'error',
-  'prefer-template': 'error',
-  'no-useless-concat': 'error',
+const javascriptPluginConfig = config({
+  extends: [pluginJavascript.configs.recommended],
+  rules: normalizeRules({
+    'no-useless-rename': 'error',
+    'object-shorthand': 'error',
+    'prefer-template': 'error',
+    'no-useless-concat': 'error',
+  }),
 });
 
-const stylisticRules = normalizeRules('@stylistic', {
-  quotes: 'single',
-  'linebreak-style': 'unix',
-  'no-extra-parens': 'all',
-  'no-extra-semi': 'error',
-  'padded-blocks': 'off',
+const stylisticPluginConfig = config({
+  extends: [
+    pluginStylistic.configs.customize({
+      quotes: 'single',
+      indent: 2,
+      semi: true,
+      arrowParens: true,
+      quoteProps: 'as-needed',
+      braceStyle: '1tbs',
+    }),
+  ],
+  rules: normalizeRules('@stylistic', {
+    'linebreak-style': 'unix',
+    'no-extra-parens': 'all',
+    'no-extra-semi': 'error',
+    'padded-blocks': 'off',
+  }),
 });
 
-const typescriptRules = normalizeRules('@typescript-eslint', {
-  'array-type': {
-    default: 'array-simple',
-    readonly: 'array-simple',
-  },
-  'restrict-template-expressions': 'off',
+const typescriptPluginConfig = config({
+  files: ['**/*.ts'],
+  extends: [
+    typescriptConfigs.strictTypeChecked,
+    typescriptConfigs.stylisticTypeChecked,
+  ],
+  languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: process.cwd() } },
+  rules: normalizeRules('@typescript-eslint', {
+    'array-type': { default: 'array-simple', readonly: 'array-simple' },
+    'restrict-template-expressions': 'off',
+  }),
 });
-
-const stylisticPluginConfig = stylistic.configs.customize({
-  indent: 2,
-  semi: true,
-  arrowParens: true,
-  quoteProps: 'as-needed',
-  braceStyle: '1tbs',
-});
-
-const typescriptPluginConfig = config(
-  ...typescriptConfigs.strictTypeChecked,
-  ...typescriptConfigs.stylisticTypeChecked,
-  { languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: process.cwd() } } },
-  { files: ['**/*.{js,cjs,mjs}'], ...typescriptConfigs.disableTypeChecked },
-);
 
 export default config(
-  { files: ['**/*.{js,cjs,mjs,ts}'] },
-  { ignores: ['dist', 'coverage'] },
-  { languageOptions: { globals: { ...globals.node, ...globals.browser } } },
-  js.configs.recommended,
-  stylisticPluginConfig,
-  ...typescriptPluginConfig,
-  { rules: { ...eslintRules, ...stylisticRules, ...typescriptRules } },
+  {
+    files: ['**/*.{js,cjs,mjs,ts}'],
+    ignores: ['dist', 'coverage'],
+    extends: [
+      javascriptPluginConfig,
+      stylisticPluginConfig,
+    ],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
+  },
+  typescriptPluginConfig,
 );
 
 function normalizeRuleEntry(entry) {
@@ -57,8 +64,7 @@ function normalizeRuleEntry(entry) {
   return ['error', entry];
 }
 
-function createRuleNameNormalizer(pluginName) {
-  if (!pluginName) return (ruleName) => ruleName;
+function createPluginRuleNameNormalizer(pluginName) {
   const pluginPrefix = `${pluginName}/`;
   return (ruleName) => {
     if (ruleName.startsWith(pluginPrefix)) return ruleName;
@@ -66,16 +72,14 @@ function createRuleNameNormalizer(pluginName) {
   };
 }
 
-function normalizeRulesObject(rules, pluginName) {
-  const normalizeRuleName = createRuleNameNormalizer(pluginName);
-  return Object.fromEntries(
-    Object.entries(rules).map(
-      ([ruleName, ruleEntry]) => [normalizeRuleName(ruleName), normalizeRuleEntry(ruleEntry)],
-    ),
-  );
+function createEntryNormalizer(pluginName) {
+  if (!pluginName) return ([ruleName, ruleEntry]) => [ruleName, normalizeRuleEntry(ruleEntry)];
+  const normalizeRuleName = createPluginRuleNameNormalizer(pluginName);
+  return ([ruleName, ruleEntry]) => [normalizeRuleName(ruleName), normalizeRuleEntry(ruleEntry)];
 }
 
-function normalizeRules(pluginOrRules, rules) {
-  if (!rules) return normalizeRulesObject(pluginOrRules);
-  return normalizeRulesObject(rules, pluginOrRules);
+function normalizeRules(pluginName, rules) {
+  if (!rules && pluginName) return normalizeRules(null, pluginName);
+  const normalizeEntry = createEntryNormalizer(pluginName);
+  return Object.fromEntries(Object.entries(rules).map(normalizeEntry));
 }
