@@ -1,6 +1,5 @@
-/** @type { import("jest").Config } */
+/** @type { import("ts-jest").JestConfigWithTsJest } */
 const config = {
-  cacheDirectory: 'node_modules/.cache/jest',
   preset: 'ts-jest',
 
   collectCoverage: !process.env.SKIP_COVERAGE,
@@ -12,6 +11,7 @@ const config = {
     ? ['json', 'clover', 'cobertura']
     : ['html', 'text'],
 
+  cacheDirectory: 'node_modules/.cache/jest',
   verbose: true,
 };
 
