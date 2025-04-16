@@ -46,13 +46,13 @@ export function each(callback: (num: number, expected: string) => void): void {
     'MMM',
   ]
 
-  mils.forEach((milSym, mil) => {
-    cents.forEach((centSym, cent) => {
-      decs.forEach((decSym, dec) => {
-        unities.forEach((unitySym, unity) => {
-          const num = mil * 1000 + cent * 100 + dec * 10 + unity
-          const expected = milSym + centSym + decSym + unitySym
-          callback(num, expected)
+  mils.forEach((milSymbol, milMultiplier) => {
+    cents.forEach((centSymbol, centMultiplier) => {
+      decs.forEach((decSymbol, decMultiplier) => {
+        unities.forEach((unitySymbol, unity) => {
+          const number = 1000 * milMultiplier + 100 * centMultiplier + 10 * decMultiplier + unity
+          const romanExpected = `${milSymbol}${centSymbol}${decSymbol}${unitySymbol}`
+          callback(number, romanExpected)
         })
       })
     })

@@ -1,27 +1,31 @@
 const { floor } = Math
 
-function fmt(num: number, i: number, symbols: string[]): string {
+function fmt(asInteger: number, symbols: string, unityIndex: number): string {
 
-  const unity = symbols[i]
-  const unity2 = unity + unity
-  const unity3 = unity2 + unity
-  const five = symbols[i + 1]
+  const one = symbols[unityIndex]
+  const two = `${one}${one}`
+  const three = `${two}${one}`
+  const five = symbols[unityIndex + 1]
 
   const result = [
     '',
-    unity,
-    unity2,
-    unity3,
-    unity + five,
+    one,
+    two,
+    three,
+    `${one}${five}`,
     five,
-    five + unity,
-    five + unity2,
-    five + unity3,
-    unity + symbols[i + 2],
-  ][num % 10]
+    `${five}${one}`,
+    `${five}${two}`,
+    `${five}${three}`,
+    `${one}${symbols[unityIndex + 2]}`,
+  ][asInteger % 10]
 
-  const next = floor(num / 10)
-  return next ? fmt(next, i + 2, symbols) + result : result
+  const next = floor(asInteger / 10)
+
+  if (!next) return result
+
+  const prefix = fmt(next, symbols, unityIndex + 2)
+  return `${prefix}${result}`
 
 }
 
@@ -31,25 +35,21 @@ function format(num: number): string {
     throw new TypeError(`"${num}" is not a valid numeric value.`)
   }
 
-  const n = floor(num)
+  const asInteger = floor(num)
 
-  if (isNaN(n)) {
+  if (isNaN(asInteger)) {
     throw new TypeError(`"${num}" is not a valid numeric value.`)
   }
 
-  if (n < 0) {
+  if (asInteger < 0) {
     throw new RangeError('number can\'t be less than zero.')
   }
 
-  if (n > 3999) {
+  if (asInteger > 3999) {
     throw new RangeError('number can\'t be greater than 3999.')
   }
 
-  return fmt(
-    n,
-    0,
-    'IVXLCDM'.split(''),
-  )
+  return fmt(asInteger, 'IVXLCDM', 0)
 
 }
 
