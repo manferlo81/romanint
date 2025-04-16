@@ -1,4 +1,4 @@
-import { config } from 'bundlib';
+import { config } from 'bundlib'
 
 export default config({
   interop: true,
@@ -7,4 +7,4 @@ export default config({
   name: 'toRoman',
   equals: true,
   project: 'tsconfig-build.json',
-});
+})

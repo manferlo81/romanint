@@ -11,7 +11,7 @@ export function each(callback: (num: number, expected: string) => void): void {
     'VII',
     'VIII',
     'IX',
-  ];
+  ]
 
   const decs = [
     '',
@@ -24,7 +24,7 @@ export function each(callback: (num: number, expected: string) => void): void {
     'LXX',
     'LXXX',
     'XC',
-  ];
+  ]
 
   const cents = [
     '',
@@ -37,25 +37,25 @@ export function each(callback: (num: number, expected: string) => void): void {
     'DCC',
     'DCCC',
     'CM',
-  ];
+  ]
 
   const mils = [
     '',
     'M',
     'MM',
     'MMM',
-  ];
+  ]
 
   mils.forEach((milSym, mil) => {
     cents.forEach((centSym, cent) => {
       decs.forEach((decSym, dec) => {
         unities.forEach((unitySym, unity) => {
-          const num = mil * 1000 + cent * 100 + dec * 10 + unity;
-          const expected = milSym + centSym + decSym + unitySym;
-          callback(num, expected);
-        });
-      });
-    });
-  });
+          const num = mil * 1000 + cent * 100 + dec * 10 + unity
+          const expected = milSym + centSym + decSym + unitySym
+          callback(num, expected)
+        })
+      })
+    })
+  })
 
 }
