@@ -6,5 +6,5 @@ export default config({
   min: ['browser', 'module'],
   name: 'toRoman',
   equals: true,
-  project: 'tsconfig-build.json',
+  project: './tsconfig.build.json',
 })
