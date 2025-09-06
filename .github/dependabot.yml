@@ -11,5 +11,13 @@ updates:
       time: "07:00"
       timezone: Asia/Jakarta
 
+    groups:
+      eslint-related:
+        dependency-type: development
+        patterns:
+          - eslint
+          - eslint-plugin
+          - globals
+
     assignees:
       - manferlo81
