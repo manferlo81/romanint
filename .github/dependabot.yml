@@ -16,8 +16,20 @@ updates:
         dependency-type: development
         patterns:
           - eslint
-          - eslint-plugin
+          - eslint-*
+          - "@*/eslint-plugin"
+          - typescript-eslint
           - globals
+      babel-related:
+        dependency-type: development
+        patterns:
+          - "@babel/*"
+          - core-js
+      jest-related:
+        dependency-type: development
+        patterns:
+          - jest
+          - ts-jest
 
     assignees:
       - manferlo81
