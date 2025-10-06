@@ -73,7 +73,6 @@ const configPluginStylistic = config({
   }),
   files: FILES_ALL,
   extends: [
-    // eslint-disable-next-line import-x/no-named-as-default-member
     pluginStylistic.configs.customize({
       quotes: 'single',
       indent: 2,
