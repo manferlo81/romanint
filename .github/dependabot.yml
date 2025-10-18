@@ -11,26 +11,55 @@ updates:
       time: "07:00"
       timezone: Asia/Jakarta
 
+    assignees:
+      - manferlo81
+
     groups:
-      eslint-related:
+      lint:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
         patterns:
           - eslint
           - "@eslint/*"
-          - eslint-*
           - "@*/eslint-plugin"
+          - eslint-plugin-*
+          - eslint-*
           - typescript-eslint
           - globals
-      babel-related:
+
+      build:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
         patterns:
           - "@babel/*"
           - core-js
-      jest-related:
+          - bundlib
+
+      test:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
         patterns:
           - jest
           - ts-jest
+          - "@types/jest"
 
-    assignees:
-      - manferlo81
+      types:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - "@types/*"
+          - typescript
+
+      others:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
